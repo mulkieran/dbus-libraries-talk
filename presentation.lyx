@@ -1,0 +1,1690 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass beamer
+\begin_preamble
+%\usetheme{Warsaw}
+\usetheme{Boadilla}
+% or ...
+
+\usecolortheme{orchid}
+\setbeamertemplate{footline}[frame number]{} % makes the footer EMPTY
+
+\setbeamercovered{transparent}
+% or whatever (possibly just delete it)
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "times" "default"
+\font_sans "lmss" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Some Python Libraries for D-Bus
+\end_layout
+
+\begin_layout Author
+Anne Mulhern
+\end_layout
+
+\begin_layout Institute
+Red Hat, Inc.
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Audience
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Who should want to attend this talk?
+\end_layout
+
+\begin_layout Itemize
+People who might find themselves supporting Stratis
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/stratis-storage
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+People who might find themselves writing a D-Bus client in Python
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Testers also sometimes write D-Bus clients.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+OR maybe just 
+\emph on
+some
+\emph default
+ IPC client in Python
+\end_layout
+
+\begin_layout Itemize
+OR maybe just some D-Bus client in 
+\emph on
+some
+\emph default
+ language
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Me
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Who is giving this talk?
+\end_layout
+
+\begin_layout Itemize
+I am 
+\emph on
+not
+\emph default
+ an IPC expert
+\end_layout
+
+\begin_layout Itemize
+I am a Python expert
+\end_layout
+
+\begin_layout Itemize
+I am a specification-based testing, most typically with hypothesis, enthusiast
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Previous talks: 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://developers.redhat.com/blog/2016/06/24/the-hypothesis-testing-library-for-p
+ython-an-introduction/
+\end_layout
+
+\end_inset
+
+, 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.youtube.com/watch?v=V9YudyFpDgw
+\end_layout
+
+\end_inset
+
+: around the 2:38 mark
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+I have an unusually strong compiler background
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+My former advisor's compiler textbook: 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.pearson.com/us/higher-education/program/Fischer-Crafting-A-Compiler/PG
+M315544.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+I'm the Stratis team tech-lead
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Expectations
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+What this talk will include.
+\end_layout
+
+\begin_layout Itemize
+A discussion of a bunch of little libraries for supporting Python D-Bus
+ clients
+\end_layout
+
+\begin_layout Itemize
+Some thoughts about how these ideas could be extended
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Overview
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+These libraries are 
+\emph on
+small
+\emph default
+ and 
+\emph on
+focused
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename dbus-related-libraries.pdf
+	scale 30
+	rotateAngle -90
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Justification
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Why so small, why so focused, i.e., why didn't I just hide them away inside
+ stratis-cli so nobody else could use them?
+\end_layout
+
+\begin_layout Description
+Point That was a 
+\emph on
+stupid
+\emph default
+ thing to do.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+It wastes time, because the code quality is too high.
+\end_layout
+
+\begin_layout Itemize
+There is a higher maintenance cost because the libraries are all separate.
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Counterpoint That was a 
+\emph on
+good
+\emph default
+ thing to do.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+By focusing on one part of the problem, I can arrive at a durable and well-teste
+d solution more swiftly and reliably.
+\end_layout
+
+\begin_layout Itemize
+The work is sharable, including w/ ourselves; the libraries are used outside
+ stratis-cli for testing stratisd.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+hs-dbus-signature
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/stratis-storage/hs-dbus-signature
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+The smallest library of all, exclusively for testing.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename dbus-related-libraries_1.pdf
+	scale 30
+	rotateAngle -90
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+hs-dbus-signature
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+A Hypothesis 
+\emph on
+strategy
+\emph default
+ which generates arbitrary D-Bus signatures
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+D-Bus signatures specify the structure of the values sent over the D-Bus.
+\end_layout
+
+\end_inset
+
+.
+ The first external strategy to be posted on the Hypothesis website
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://hypothesis.readthedocs.io/en/latest/strategies.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout ExampleBlock
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+An Interactive Session with hs-dbus-signature
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout ExampleBlock
+\begin_inset listings
+lstparams "language=Python"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+>>> from hs_dbus_signature import dbus_signatures
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> strategy = dbus_signatures()
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> strategy.example()
+\end_layout
+
+\begin_layout Plain Layout
+
+''
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> strategy.example()
+\end_layout
+
+\begin_layout Plain Layout
+
+'a{ng}'
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> strategy.example()
+\end_layout
+
+\begin_layout Plain Layout
+
+'a{xas}a{gah}a{nau}'
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Benefits of Constructing and Distributing the Strategy
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+What does the strategy/use of Hypothesis give us?
+\end_layout
+
+\begin_layout Itemize
+A technical challenge in generating recursively defined structures is overcome
+\end_layout
+
+\begin_layout Itemize
+The strategy is itself tested with Hypothesis
+\end_layout
+
+\begin_layout Itemize
+All libraries have 100% code-coverage on tests
+\end_layout
+
+\begin_layout Itemize
+Red Hat gives back to the community by sharing this work on the Hypothesis
+ website
+\end_layout
+
+\begin_layout Itemize
+An Hypothesis developer drops by to do a rewrite
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+dbus-signature-pyparsing
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/stratis-storage/dbus-signature-pyparsing
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+General purpose library that parses D-Bus signatures.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename dbus-related-libraries_2.pdf
+	scale 30
+	rotateAngle -90
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+dbus-signature-pyparsing
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+A parser based on pyparsing
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/pyparsing/pyparsing
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+, which parses D-Bus signatures.
+\end_layout
+
+\begin_layout ExampleBlock
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+An Interactive Session with dbus-signature-pyparsing
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout ExampleBlock
+\begin_inset listings
+lstparams "language=Python"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+>>> signature = dbus_signatures().example()
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> signature
+\end_layout
+
+\begin_layout Plain Layout
+
+'(atguauay)h(vaasasx)a{g(yg)}'
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> from dbus_signature_pyparsing import Parser
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> parser = Parser().PARSER
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> _ = parser.parseString(signature, parseAll=True)
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> parser.parseString(
+\begin_inset Quotes eld
+\end_inset
+
+a
+\begin_inset Quotes erd
+\end_inset
+
+, parseAll=True)
+\end_layout
+
+\begin_layout Plain Layout
+
+Traceback (most recent call last):
+\end_layout
+
+\begin_layout Plain Layout
+
+  ...
+\end_layout
+
+\begin_layout Plain Layout
+
+  File "/usr/lib/python3.7/site-packages...
+\begin_inset Quotes erd
+\end_inset
+
+ ...
+\end_layout
+
+\begin_layout Plain Layout
+
+    raise ParseException(...)
+\end_layout
+
+\begin_layout Plain Layout
+
+pyparsing.ParseException: Expected end of text ...
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Benefits of Constructing and Distributing the Parser
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+What does a general purpose D-Bus signature parser give us?
+\end_layout
+
+\begin_layout Itemize
+100% code coverge on tests
+\end_layout
+
+\begin_layout Itemize
+This is where the compiler technology comes in
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://www.pearson.com/us/higher-education/program/Fischer-Crafting-A-Compiler/PG
+M315544.html
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+pyparsing is a two-stage parser-generator
+\end_layout
+
+\begin_layout Itemize
+any client can use this library to build anything that can be built from
+ parse actions on a D-Bus signature
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Red Hat gives back to the community by distributing this work
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+into-dbus-python
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/stratis-storage/into-dbus-python
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Special-purpose library that generates transformation functions from D-Bus
+ signatures.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename dbus-related-libraries_3.pdf
+	scale 30
+	rotateAngle -90
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+into-dbus-python
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+The functions transform values with regular Python language types to value
+ with dbus-python
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://pypi.org/project/dbus-python/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ types.
+\end_layout
+
+\begin_layout ExampleBlock
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+An Interactive Session with into-dbus-python
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout ExampleBlock
+\begin_inset listings
+lstparams "language=Python"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+>>> from into_dbus_python import xformers
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> func = xformers(
+\begin_inset Quotes eld
+\end_inset
+
+aq
+\begin_inset Quotes erd
+\end_inset
+
+)[0][0]
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> func
+\end_layout
+
+\begin_layout Plain Layout
+
+<function _ToDbusXformer._handleArray...
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> func([2])
+\end_layout
+
+\begin_layout Plain Layout
+
+(dbus.Array([dbus.UInt16(2)], ...)
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> func("abc")
+\end_layout
+
+\begin_layout Plain Layout
+
+Traceback (most recent call last):
+\end_layout
+
+\begin_layout Plain Layout
+
+  ...
+\end_layout
+
+\begin_layout Plain Layout
+
+into_dbus_python._errors.IntoDPValueError: ...
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Benefits of Constructing and Distributing this Function Generator
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+What good is this function generator?
+\end_layout
+
+\begin_layout Itemize
+Allows callers to set 
+\family typewriter
+introspect
+\family default
+ to 
+\family typewriter
+False
+\family default
+ in 
+\family typewriter
+BusConnection.get_object
+\family default
+ call
+\end_layout
+
+\begin_layout Itemize
+100% code coverge on tests
+\end_layout
+
+\begin_layout Itemize
+Innovative use of compiler technology
+\end_layout
+
+\begin_layout Itemize
+Red Hat gives back to the community by distributing this work
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+dbus-python-client-gen
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/stratis-storage/dbus-python-client-gen
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Generates syntactic sugar for D-Bus function calls using dbus-python.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename dbus-related-libraries_4.pdf
+	scale 30
+	rotateAngle -90
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+dbus-python-client-gen
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Given introspection data for a given D-Bus interface generates a class with
+ corresponding methods.
+\end_layout
+
+\begin_layout ExampleBlock
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+Example introspection data
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout ExampleBlock
+\begin_inset listings
+lstparams "language=Python,basicstyle={\tiny}"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+introspect = """
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+ <interface name="org.storage.stratis1.blockdev">
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+ <method name="SetUserInfo">
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+ <arg name="id" type="s" direction="in"/>
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+ <arg name="changed" type="b" direction="out"/>
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+ <arg name="return_code" type="q" direction="out"/>
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+ <arg name="return_string" type="s" direction="out"/>
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+ </method>
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+ <property name="Devnode" type="s" access="read">
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+ <annotation name="org.freedesktop.DBus.Property.EmitsChangedSignal" value="const"/>
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+ </property>
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+ </interface>
+\end_layout
+
+\begin_layout Plain Layout
+
+...
+ 
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+dbus-python-client-gen
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Given introspection data for a given D-Bus interface generates a class with
+ corresponding methods.
+\end_layout
+
+\begin_layout ExampleBlock
+\begin_inset Argument 2
+status open
+
+\begin_layout Plain Layout
+An interactive session with dbus-python-client-gen
+\end_layout
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "language=Python,showstringspaces=false"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+>>> import dbus_python_client_gen
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> from dbus_python_client_gen import make_class
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> import xml.etree.ElementTree as ET
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> Blockdev = make_class(
+\begin_inset Quotes eld
+\end_inset
+
+Blockdev
+\begin_inset Quotes erd
+\end_inset
+
+,
+\end_layout
+
+\begin_layout Plain Layout
+
+                          ET.fromstring(introspect))
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> Blockdev
+\end_layout
+
+\begin_layout Plain Layout
+
+<class 'types.Blockdev'>
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> Blockdev.Methods.SetUserInfo
+\end_layout
+
+\begin_layout Plain Layout
+
+<function method_builder.<locals>...>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+dbus-python-client-gen
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+What does the Blockdev.Methods.SetUserInfo function do?
+\end_layout
+
+\begin_layout Itemize
+It takes two parameters:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+a proxy object
+\end_layout
+
+\begin_layout Itemize
+a dict containing the function arguments
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+It:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+verifies that the function keywords are correct
+\end_layout
+
+\begin_layout Itemize
+transforms the function arguments to dbus-python ones using an into-dbus-python
+ generated function
+\end_layout
+
+\begin_layout Itemize
+obtains the appropriate dbus-python method
+\end_layout
+
+\begin_layout Itemize
+invokes the method passing the transformed arguments
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Benefits of Constructing and Distributing this Function Generator
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+What good is this function generator?
+\end_layout
+
+\begin_layout Itemize
+Yields some reasonable syntactic sugar
+\end_layout
+
+\begin_layout Itemize
+This syntactic sugar gives two additional benefits:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Dynamic check that exactly the correct arguments are passed
+\end_layout
+
+\begin_layout Itemize
+Automatic transformation of argument values to dbus-python types
+\end_layout
+
+\begin_layout Itemize
+Exceptions which supplement those generated by dbus-python methods
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Thanks
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Any questions?
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

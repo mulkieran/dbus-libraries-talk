@@ -102,7 +102,7 @@ Red Hat, Inc.
 
 \begin_layout Frame
 \begin_inset Argument 4
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Audience
@@ -125,11 +125,11 @@ Who should want to attend this talk?
 \begin_layout Itemize
 People who might find themselves supporting Stratis
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Flex URL
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -143,13 +143,13 @@ https://github.com/stratis-storage
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Itemize
 People who might find themselves writing a D-Bus client in Python
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Testers also sometimes write D-Bus clients.
@@ -157,7 +157,7 @@ Testers also sometimes write D-Bus clients.
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_deeper
@@ -178,6 +178,11 @@ some
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+People who have a problem that could be profitably tackled using compiler
+ technologies.
+\end_layout
+
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator parbreak
@@ -188,7 +193,7 @@ some
 
 \begin_layout Frame
 \begin_inset Argument 4
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Me
@@ -213,22 +218,22 @@ I am
 \emph on
 not
 \emph default
- an IPC expert
+ an IPC expert.
 \end_layout
 
 \begin_layout Itemize
-I am a Python expert
+I am a Python expert.
 \end_layout
 
 \begin_layout Itemize
 I am a specification-based testing, most typically with hypothesis, enthusiast
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Previous talks: 
 \begin_inset Flex URL
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -240,7 +245,7 @@ ython-an-introduction/
 
 , 
 \begin_inset Flex URL
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -254,18 +259,18 @@ https://www.youtube.com/watch?v=V9YudyFpDgw
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Itemize
 I have an unusually strong compiler background
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 My former advisor's compiler textbook: 
 \begin_inset Flex URL
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -280,11 +285,11 @@ M315544.html
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Itemize
-I'm the Stratis team tech-lead
+I'm the Stratis team tech-lead.
 \end_layout
 
 \end_deeper
@@ -297,7 +302,7 @@ I'm the Stratis team tech-lead
 
 \begin_layout Frame
 \begin_inset Argument 4
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Expectations
@@ -318,12 +323,12 @@ What this talk will include.
 \end_layout
 
 \begin_layout Itemize
-A discussion of a bunch of little libraries for supporting Python D-Bus
- clients
+From me: A discussion of a bunch of little libraries for supporting Python
+ D-Bus clients.
 \end_layout
 
 \begin_layout Itemize
-Some thoughts about how these ideas could be extended
+From you: Some thoughts about how these ideas could be extended.
 \end_layout
 
 \end_deeper
@@ -336,7 +341,7 @@ Some thoughts about how these ideas could be extended
 
 \begin_layout Frame
 \begin_inset Argument 4
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Overview
@@ -385,7 +390,7 @@ focused
 
 \begin_layout Frame
 \begin_inset Argument 4
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Justification
@@ -416,7 +421,15 @@ stupid
 
 \begin_deeper
 \begin_layout Itemize
-It wastes time, because the code quality is too high.
+It wastes time, because the code quality is 
+\begin_inset Quotes eld
+\end_inset
+
+too high
+\begin_inset Quotes erd
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Itemize
@@ -434,13 +447,24 @@ good
 
 \begin_deeper
 \begin_layout Itemize
-By focusing on one part of the problem, I can arrive at a durable and well-teste
-d solution more swiftly and reliably.
+By focusing on one part of the problem, I can arrive at a 
+\emph on
+durable
+\emph default
+ and 
+\emph on
+well-tested
+\emph default
+ solution more swiftly and reliably.
 \end_layout
 
 \begin_layout Itemize
-The work is sharable, including w/ ourselves; the libraries are used outside
- stratis-cli for testing stratisd.
+The work is 
+\emph on
+sharable
+\emph default
+, including with ourselves; the libraries are used outside stratis-cli for
+ testing stratisd.
 \end_layout
 
 \end_deeper
@@ -454,16 +478,16 @@ The work is sharable, including w/ ourselves; the libraries are used outside
 
 \begin_layout Frame
 \begin_inset Argument 4
-status open
+status collapsed
 
 \begin_layout Plain Layout
 hs-dbus-signature
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Flex URL
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -515,7 +539,7 @@ The smallest library of all, exclusively for testing.
 
 \begin_layout FragileFrame
 \begin_inset Argument 4
-status open
+status collapsed
 
 \begin_layout Plain Layout
 hs-dbus-signature
@@ -538,7 +562,7 @@ strategy
 \emph default
  which generates arbitrary D-Bus signatures
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 D-Bus signatures specify the structure of the values sent over the D-Bus.
@@ -549,11 +573,11 @@ D-Bus signatures specify the structure of the values sent over the D-Bus.
 .
  The first external strategy to be posted on the Hypothesis website
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Flex URL
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -572,7 +596,7 @@ https://hypothesis.readthedocs.io/en/latest/strategies.html
 
 \begin_layout ExampleBlock
 \begin_inset Argument 2
-status open
+status collapsed
 
 \begin_layout Plain Layout
 An Interactive Session with hs-dbus-signature
@@ -587,7 +611,7 @@ An Interactive Session with hs-dbus-signature
 \begin_inset listings
 lstparams "language=Python"
 inline false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -644,7 +668,7 @@ status open
 
 \begin_layout Frame
 \begin_inset Argument 4
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Benefits of Constructing and Distributing the Strategy
@@ -665,24 +689,24 @@ What does the strategy/use of Hypothesis give us?
 \end_layout
 
 \begin_layout Itemize
-A technical challenge in generating recursively defined structures is overcome
+A technical challenge in generating recursively defined structures is overcome.
 \end_layout
 
 \begin_layout Itemize
-The strategy is itself tested with Hypothesis
+The strategy is itself tested with Hypothesis.
 \end_layout
 
 \begin_layout Itemize
-All libraries have 100% code-coverage on tests
+All libraries have 100% code-coverage on tests.
 \end_layout
 
 \begin_layout Itemize
 Red Hat gives back to the community by sharing this work on the Hypothesis
- website
+ website.
 \end_layout
 
 \begin_layout Itemize
-An Hypothesis developer drops by to do a rewrite
+An Hypothesis developer drops by to do a rewrite.
 \end_layout
 
 \end_deeper
@@ -695,16 +719,16 @@ An Hypothesis developer drops by to do a rewrite
 
 \begin_layout Frame
 \begin_inset Argument 4
-status open
+status collapsed
 
 \begin_layout Plain Layout
 dbus-signature-pyparsing
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Flex URL
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -756,7 +780,7 @@ General purpose library that parses D-Bus signatures.
 
 \begin_layout FragileFrame
 \begin_inset Argument 4
-status open
+status collapsed
 
 \begin_layout Plain Layout
 dbus-signature-pyparsing
@@ -775,11 +799,11 @@ dbus-signature-pyparsing
 \begin_layout FrameSubtitle
 A parser based on pyparsing
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Flex URL
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -798,7 +822,7 @@ https://github.com/pyparsing/pyparsing
 
 \begin_layout ExampleBlock
 \begin_inset Argument 2
-status open
+status collapsed
 
 \begin_layout Plain Layout
 An Interactive Session with dbus-signature-pyparsing
@@ -813,7 +837,7 @@ An Interactive Session with dbus-signature-pyparsing
 \begin_inset listings
 lstparams "language=Python"
 inline false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -902,7 +926,7 @@ pyparsing.ParseException: Expected end of text ...
 
 \begin_layout Frame
 \begin_inset Argument 4
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Benefits of Constructing and Distributing the Parser
@@ -923,17 +947,17 @@ What does a general purpose D-Bus signature parser give us?
 \end_layout
 
 \begin_layout Itemize
-100% code coverge on tests
+100% code coverge on tests.
 \end_layout
 
 \begin_layout Itemize
 This is where the compiler technology comes in
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Flex URL
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -953,17 +977,17 @@ M315544.html
 
 \begin_deeper
 \begin_layout Itemize
-pyparsing is a two-stage parser-generator
+pyparsing is a two-stage parser-generator.
 \end_layout
 
 \begin_layout Itemize
 any client can use this library to build anything that can be built from
- parse actions on a D-Bus signature
+ parse actions on a D-Bus signature.
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-Red Hat gives back to the community by distributing this work
+Red Hat gives back to the community by distributing this work.
 \end_layout
 
 \end_deeper
@@ -976,16 +1000,16 @@ Red Hat gives back to the community by distributing this work
 
 \begin_layout Frame
 \begin_inset Argument 4
-status open
+status collapsed
 
 \begin_layout Plain Layout
 into-dbus-python
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Flex URL
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1038,7 +1062,7 @@ Special-purpose library that generates transformation functions from D-Bus
 
 \begin_layout FragileFrame
 \begin_inset Argument 4
-status open
+status collapsed
 
 \begin_layout Plain Layout
 into-dbus-python
@@ -1058,11 +1082,11 @@ into-dbus-python
 The functions transform values with regular Python language types to value
  with dbus-python
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Flex URL
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1081,7 +1105,7 @@ https://pypi.org/project/dbus-python/
 
 \begin_layout ExampleBlock
 \begin_inset Argument 2
-status open
+status collapsed
 
 \begin_layout Plain Layout
 An Interactive Session with into-dbus-python
@@ -1096,7 +1120,7 @@ An Interactive Session with into-dbus-python
 \begin_inset listings
 lstparams "language=Python"
 inline false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1171,7 +1195,7 @@ into_dbus_python._errors.IntoDPValueError: ...
 
 \begin_layout Frame
 \begin_inset Argument 4
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Benefits of Constructing and Distributing this Function Generator
@@ -1204,19 +1228,19 @@ False
 \family typewriter
 BusConnection.get_object
 \family default
- call
+ call.
 \end_layout
 
 \begin_layout Itemize
-100% code coverge on tests
+100% code coverge on tests.
 \end_layout
 
 \begin_layout Itemize
-Innovative use of compiler technology
+Innovative use of compiler technology.
 \end_layout
 
 \begin_layout Itemize
-Red Hat gives back to the community by distributing this work
+Red Hat gives back to the community by distributing this work.
 \end_layout
 
 \end_deeper
@@ -1229,16 +1253,16 @@ Red Hat gives back to the community by distributing this work
 
 \begin_layout Frame
 \begin_inset Argument 4
-status open
+status collapsed
 
 \begin_layout Plain Layout
 dbus-python-client-gen
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Flex URL
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1290,7 +1314,7 @@ Generates syntactic sugar for D-Bus function calls using dbus-python.
 
 \begin_layout FragileFrame
 \begin_inset Argument 4
-status open
+status collapsed
 
 \begin_layout Plain Layout
 dbus-python-client-gen
@@ -1313,7 +1337,7 @@ Given introspection data for a given D-Bus interface generates a class with
 
 \begin_layout ExampleBlock
 \begin_inset Argument 2
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Example introspection data
@@ -1328,7 +1352,7 @@ Example introspection data
 \begin_inset listings
 lstparams "language=Python,basicstyle={\tiny}"
 inline false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1434,7 +1458,7 @@ introspect = """
 
 \begin_layout FragileFrame
 \begin_inset Argument 4
-status open
+status collapsed
 
 \begin_layout Plain Layout
 dbus-python-client-gen
@@ -1457,7 +1481,7 @@ Given introspection data for a given D-Bus interface generates a class with
 
 \begin_layout ExampleBlock
 \begin_inset Argument 2
-status open
+status collapsed
 
 \begin_layout Plain Layout
 An interactive session with dbus-python-client-gen
@@ -1469,7 +1493,7 @@ An interactive session with dbus-python-client-gen
 \begin_inset listings
 lstparams "language=Python,showstringspaces=false"
 inline false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -1539,7 +1563,7 @@ Blockdev
 
 \begin_layout Frame
 \begin_inset Argument 4
-status open
+status collapsed
 
 \begin_layout Plain Layout
 dbus-python-client-gen
@@ -1574,25 +1598,25 @@ a dict containing the function arguments
 
 \end_deeper
 \begin_layout Itemize
-It:
+It
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-verifies that the function keywords are correct
+verifies that the function keywords are correct.
 \end_layout
 
 \begin_layout Itemize
 transforms the function arguments to dbus-python ones using an into-dbus-python
- generated function
+ generated function.
 \end_layout
 
 \begin_layout Itemize
-obtains the appropriate dbus-python method
+obtains the appropriate dbus-python method.
 \end_layout
 
 \begin_layout Itemize
-invokes the method passing the transformed arguments
+invokes the method passing the transformed arguments.
 \end_layout
 
 \end_deeper
@@ -1606,7 +1630,7 @@ invokes the method passing the transformed arguments
 
 \begin_layout Frame
 \begin_inset Argument 4
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Benefits of Constructing and Distributing this Function Generator
@@ -1627,24 +1651,24 @@ What good is this function generator?
 \end_layout
 
 \begin_layout Itemize
-Yields some reasonable syntactic sugar
+Yields some reasonable syntactic sugar.
 \end_layout
 
 \begin_layout Itemize
-This syntactic sugar gives two additional benefits:
+This syntactic sugar gives some additional benefits:
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-Dynamic check that exactly the correct arguments are passed
+Dynamic check that exactly the correct arguments are passed.
 \end_layout
 
 \begin_layout Itemize
-Automatic transformation of argument values to dbus-python types
+Automatic transformation of argument values to dbus-python types.
 \end_layout
 
 \begin_layout Itemize
-Exceptions which supplement those generated by dbus-python methods
+Exceptions which supplement those generated by dbus-python methods.
 \end_layout
 
 \end_deeper
@@ -1658,7 +1682,211 @@ Exceptions which supplement those generated by dbus-python methods
 
 \begin_layout Frame
 \begin_inset Argument 4
-status open
+status collapsed
+
+\begin_layout Plain Layout
+dbus-client-gen
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Flex URL
+status collapsed
+
+\begin_layout Plain Layout
+
+https://github.com/stratis-storage/dbus-client-gen
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Generates syntactic sugar for interpreting values returned on the D-Bus.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename dbus-related-libraries_5.pdf
+	scale 30
+	rotateAngle -90
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout FragileFrame
+\begin_inset Argument 4
+status collapsed
+
+\begin_layout Plain Layout
+dbus-client-gen
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+Given introspection data for a given D-Bus interface generates useful functions
+ for interacting with a GetManagedObjects call result.
+\end_layout
+
+\begin_layout ExampleBlock
+\begin_inset Argument 2
+status collapsed
+
+\begin_layout Plain Layout
+An interactive session with dbus-client-gen
+\end_layout
+
+\end_inset
+
+
+\begin_inset listings
+lstparams "language=Python,showstringspaces=false"
+inline false
+status collapsed
+
+\begin_layout Plain Layout
+
+>>> import dbus_client_gen
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> from dbus_client_gen import mo_query_builder
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> import xml.etree.ElementTree as ET
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> devs = mo_query_builder(
+\end_layout
+
+\begin_layout Plain Layout
+
+           ET.fromstring(introspect))
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> devs
+\end_layout
+
+\begin_layout Plain Layout
+
+<function mo_query_builder.<locals>.the_func ...
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> query = devs(props={'Devnode': '/dev/vdd'})
+\end_layout
+
+\begin_layout Plain Layout
+
+>>> query
+\end_layout
+
+\begin_layout Plain Layout
+
+<dbus_client_gen._managed_objects_queries.GMOQuery...
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status collapsed
+
+\begin_layout Plain Layout
+Summary
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout FrameSubtitle
+All these libraries, one more time.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename dbus-related-libraries.pdf
+	scale 30
+	rotateAngle -90
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status collapsed
 
 \begin_layout Plain Layout
 Thanks
